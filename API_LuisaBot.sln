@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API_LuisaBot", "API_LuisaBot.csproj", "{F0A97EE4-E1DF-40C7-BF13-8FEFD4E5F24F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F0A97EE4-E1DF-40C7-BF13-8FEFD4E5F24F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0A97EE4-E1DF-40C7-BF13-8FEFD4E5F24F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0A97EE4-E1DF-40C7-BF13-8FEFD4E5F24F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0A97EE4-E1DF-40C7-BF13-8FEFD4E5F24F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E3B77F09-2A22-45FD-9734-F5A9A74E8B15}
+	EndGlobalSection
+EndGlobal
