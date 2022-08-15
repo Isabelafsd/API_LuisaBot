@@ -1,4 +1,5 @@
 ﻿using API_LuisaBot.Models;
+using API_LuisaBot.Models.Requests;
 using API_LuisaBot.Repositories.Context;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,8 @@ namespace API_LuisaBot.Controllers
     public class SugestaoController : ControllerBase
     {
         private readonly AppDbContext _context;
+
+
         public SugestaoController(AppDbContext context)
         {
             _context = context;
@@ -28,26 +31,38 @@ namespace API_LuisaBot.Controllers
             return Ok(sugestoes);
         }
 
-        [HttpGet]
-        [Route("sugestao/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
             var sugestao = await _context
                 .Sugestoes
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x=>x.Id == id);
-            return sugestao == null ?NotFound() : Ok(sugestao);
+            return sugestao == null ? NotFound() : Ok(sugestao);
         }
 
-        //[HttpPost]
-        //[Route("sugestao/{id}")]
-        //public async Task<IActionResult> PostSugestao(Guid id)
-        //{
-        //    var sugestao = await _context
-        //        .Sugestoes
-        //        .AsNoTracking()
-        //        .FirstOrDefaultAsync(x => x.Id == id);
-        //    return sugestao == null ? NotFound() : Ok(sugestao);
-        //}
+        [HttpPost]
+        public async Task<IActionResult> PostSugestao(SugestaoRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            SugestaoModel sugestao = new() {
+                Descricao = request.Descricao,
+                IsPergunta = request.IsPergunta,
+                Tema = request.Tema
+            };
+
+            try
+            {
+                await _context.Sugestoes.AddAsync(sugestao);
+                await _context.SaveChangesAsync();
+                return Created($"sugestao/{sugestao.Id}",sugestao);
+            }
+            catch (Exception e) 
+            {
+                return BadRequest();
+            }      
+        }
     }
 }
