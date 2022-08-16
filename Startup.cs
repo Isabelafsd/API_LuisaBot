@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.Swagger;
 
 namespace API_LuisaBot
 {
@@ -18,6 +21,21 @@ namespace API_LuisaBot
         {
             services.AddControllers();
             services.AddDbContext<AppDbContext>();
+
+            services.AddSwaggerGen(opt =>
+            {
+                opt.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Luisa Bot",
+                    Description = "Um exemplo de aplicação ASP.NET Core Web API",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Isabela Fonseca",
+                        Email = "isabelafonsecasd@gmail.com.br"
+                    }
+                });
+            }); 
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -28,13 +46,22 @@ namespace API_LuisaBot
             }
 
             app.UseRouting();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}"
                     );
+            });
+
+            //Ativa o Swagger
+            app.UseSwagger();
+
+            // Ativa o Swagger UI
+            app.UseSwaggerUI(opt =>
+            {
+                opt.SwaggerEndpoint("/swagger/v1/swagger.json", "LuisaBot V1");
             });
         }
     }

@@ -16,7 +16,6 @@ namespace API_LuisaBot.Controllers
     {
         private readonly AppDbContext _context;
 
-
         public SugestaoController(AppDbContext context)
         {
             _context = context;
