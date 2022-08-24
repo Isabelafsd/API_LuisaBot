@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API_LuisaBot.Interfaces.Repositories;
+using API_LuisaBot.Repositories.ConcreteRepositories;
 using API_LuisaBot.Repositories.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,6 +23,9 @@ namespace API_LuisaBot
         {
             services.AddControllers();
             services.AddDbContext<AppDbContext>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<ISugestaoRepository, SugestaoRepository>();
+            services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
             services.AddSwaggerGen(opt =>
             {

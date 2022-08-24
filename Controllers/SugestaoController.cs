@@ -1,4 +1,5 @@
-﻿using API_LuisaBot.Models;
+﻿using API_LuisaBot.Interfaces.Repositories;
+using API_LuisaBot.Models;
 using API_LuisaBot.Models.Requests;
 using API_LuisaBot.Repositories.Context;
 using Microsoft.AspNetCore.Mvc;
@@ -14,29 +15,23 @@ namespace API_LuisaBot.Controllers
     [Route("/sugestao")]
     public class SugestaoController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly IUnitOfWork _context;
 
-        public SugestaoController(AppDbContext context)
+        public SugestaoController(IUnitOfWork context)
         {
             _context = context;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get() {
-            var sugestoes = await _context
-                .Sugestoes
-                .AsNoTracking()
-                .ToListAsync();
-            return Ok(sugestoes);
+            var sugestoes =await _context.Sugestoes.GetAll();
+            return sugestoes is not null ? Ok(sugestoes) : NotFound();
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var sugestao = await _context
-                .Sugestoes
-                .AsNoTracking()
-                .FirstOrDefaultAsync(x=>x.Id == id);
+            var sugestao = await _context.Sugestoes.GetById(id);
             return sugestao == null ? NotFound() : Ok(sugestao);
         }
 
@@ -54,8 +49,7 @@ namespace API_LuisaBot.Controllers
 
             try
             {
-                await _context.Sugestoes.AddAsync(sugestao);
-                await _context.SaveChangesAsync();
+                await _context.Sugestoes.Add(sugestao);
                 return Created($"sugestao/{sugestao.Id}",sugestao);
             }
             catch (Exception e) 
