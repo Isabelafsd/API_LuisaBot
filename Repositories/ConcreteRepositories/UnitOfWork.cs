@@ -7,14 +7,24 @@ namespace API_LuisaBot.Repositories.ConcreteRepositories
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        public ISugestaoRepository Sugestoes { get; set;}
         private AppDbContext _contexto = null;
         private bool disposed = false;
+
+        #region repositories
+        public ISugestaoRepository Sugestoes { get; set; }
+        public ITemaRepository Temas { get; set; }
+        public IPerguntaRepositoy Perguntas { get; set; }
+        public ITemaPerguntaRepository TemasPerguntas { get; set; }
+
+        #endregion
 
         public UnitOfWork(AppDbContext context)
         {
             _contexto = context;
             Sugestoes = new SugestaoRepository(_contexto);
+            Temas = new TemaRepository(_contexto);
+            Perguntas = new PerguntaRepository(_contexto);
+            TemasPerguntas = new TemaPerguntaRepository(_contexto);
         }
         public void Commit()
         {

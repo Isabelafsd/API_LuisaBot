@@ -5,7 +5,9 @@ namespace API_LuisaBot.Interfaces.Repositories
     public interface IUnitOfWork
     {
         public ISugestaoRepository Sugestoes { get; }
-
+        public ITemaRepository Temas { get; }
+        public IPerguntaRepositoy Perguntas { get; }
+        public ITemaPerguntaRepository TemasPerguntas { get; }
         void Commit();
     }
 }

@@ -24,8 +24,11 @@ namespace API_LuisaBot
             services.AddControllers();
             services.AddDbContext<AppDbContext>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<ISugestaoRepository, SugestaoRepository>();
             services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddTransient<ISugestaoRepository, SugestaoRepository>();
+            services.AddTransient<ITemaPerguntaRepository, TemaPerguntaRepository>();
+            services.AddTransient<IPerguntaRepositoy, PerguntaRepository>();
+            services.AddTransient<ITemaRepository, TemaRepository>();
 
             services.AddSwaggerGen(opt =>
             {

@@ -13,7 +13,7 @@ namespace API_LuisaBot.Repositories.ConcreteRepositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : BaseModel
     {
-        private AppDbContext _context = null;
+        protected AppDbContext _context = null;
 
         public BaseRepository(AppDbContext context)
         {
