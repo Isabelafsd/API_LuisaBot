@@ -58,7 +58,7 @@ namespace API_LuisaBot.Controllers
         }
 
         [HttpGet("tema-pergunta")]
-        public async Task<IActionResult> GetPerguntasByTema(Guid temaId)
+        public async Task<IActionResult> GetPerguntasByTemas(Guid temaId)
         {
             var listaPerguntas = new List<PerguntasByTemasResponse>();
             var perguntas = await _context.TemasPerguntas.GetAllPerguntasByTemaId(temaId);
@@ -80,3 +80,10 @@ namespace API_LuisaBot.Controllers
         }
     }
 }
+
+
+/*TODO:
+  Tratamento de erros e uso de services
+  swagger rota principal
+  unique operator para o banco
+ */

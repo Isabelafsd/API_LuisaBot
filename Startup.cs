@@ -69,6 +69,7 @@ namespace API_LuisaBot
             // Ativa o Swagger UI
             app.UseSwaggerUI(opt =>
             {
+                opt.RoutePrefix = "";
                 opt.SwaggerEndpoint("/swagger/v1/swagger.json", "LuisaBot V1");
             });
         }

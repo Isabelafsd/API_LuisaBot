@@ -15,6 +15,7 @@ namespace API_LuisaBot.Repositories.ConcreteRepositories
         public ITemaRepository Temas { get; set; }
         public IPerguntaRepositoy Perguntas { get; set; }
         public ITemaPerguntaRepository TemasPerguntas { get; set; }
+        public IRespostaRepository Respostas { get; set; }
 
         #endregion
 
@@ -25,6 +26,7 @@ namespace API_LuisaBot.Repositories.ConcreteRepositories
             Temas = new TemaRepository(_contexto);
             Perguntas = new PerguntaRepository(_contexto);
             TemasPerguntas = new TemaPerguntaRepository(_contexto);
+            Respostas = new RespostaRepository(_contexto);
         }
         public void Commit()
         {
