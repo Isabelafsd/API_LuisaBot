@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'LuisaBot-API'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_678B810EE92B4555B7E17DEC0A10D050 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DE36969BA1EA4B85AD937F429C4EC450 }}
           package: .
