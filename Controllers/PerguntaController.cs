@@ -25,8 +25,9 @@ namespace API_LuisaBot.Controllers
 
         [HttpGet]
         public async Task<IActionResult> Get() {
-            var perguntas =await _context.Perguntas.GetAll();
-            return perguntas is not null ? Ok(perguntas) : NotFound();
+            //    var perguntas =await _context.Perguntas.GetAll();
+            //  return perguntas is not null ? Ok(perguntas) : NotFound();
+            return Ok(new List<PerguntaModel>());
         }
 
         [HttpGet("{id}")]
