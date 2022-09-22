@@ -1,13 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
+using API_LuisaBot.Configurations;
 using API_LuisaBot.Interfaces.Repositories;
 using API_LuisaBot.Repositories.ConcreteRepositories;
 using API_LuisaBot.Repositories.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
@@ -19,16 +22,24 @@ namespace API_LuisaBot
     public class Startup
     {
 
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<AppDbContext>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddTransient<ISugestaoRepository, SugestaoRepository>();
             services.AddTransient<ITemaPerguntaRepository, TemaPerguntaRepository>();
             services.AddTransient<IPerguntaRepositoy, PerguntaRepository>();
             services.AddTransient<ITemaRepository, TemaRepository>();
+
+            services.ConfigureDataBase(Configuration);
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddSwaggerGen(opt =>
             {
@@ -66,6 +77,7 @@ namespace API_LuisaBot
             //Ativa o Swagger
             app.UseSwagger();
 
+            app.InitializeDatabase();
             // Ativa o Swagger UI
             app.UseSwaggerUI(opt =>
             {

@@ -10,6 +10,12 @@ namespace API_LuisaBot.Repositories.Context
 {
     public class AppDbContext : DbContext
     {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+ 
+        }
+
+
         public DbSet<SugestaoModel> Sugestoes { get; set; }
         public DbSet<RespostaModel> Respostas { get; set; }
         public DbSet<TemaModel> Temas { get; set; }
@@ -17,9 +23,6 @@ namespace API_LuisaBot.Repositories.Context
         public DbSet<PerguntaModel> Perguntas { get; set; }
 
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-            optionsBuilder.UseSqlite("DataSource=app.db;Cache=Shared");
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
