@@ -62,6 +62,7 @@ namespace API_LuisaBot.Controllers
         {
             var listaPerguntas = new List<PerguntasByTemasResponse>();
             var perguntas = await _context.TemasPerguntas.GetAllPerguntasByTemaId(temaId);
+            perguntas = perguntas.OrderBy(x=>x.Ordem).ToList();
             try
             {
                 foreach (var pergunta in perguntas) {
