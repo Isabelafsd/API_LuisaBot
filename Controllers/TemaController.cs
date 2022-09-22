@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System;
 using System.Xml.Linq;
+using System.Linq;
 
 namespace API_LuisaBot.Controllers
 {
@@ -23,7 +24,7 @@ namespace API_LuisaBot.Controllers
         public async Task<IActionResult> Get()
         {
             var temas = await _context.Temas.GetAll();
-            return temas is not null ? Ok(temas) : NotFound();
+            return temas is not null ? Ok(temas.OrderBy(x=>x.Ordem).ToList()) : NotFound();
         }
 
         [HttpGet("{id}")]

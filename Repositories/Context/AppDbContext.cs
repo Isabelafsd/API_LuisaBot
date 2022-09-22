@@ -35,6 +35,21 @@ namespace API_LuisaBot.Repositories.Context
                 .HasOne(bc => bc.Pergunta)
                 .WithMany(c => c.TemaPerguntas)
                 .HasForeignKey(bc => bc.PerguntaId);
+
+            modelBuilder.Entity<RespostaModel>()
+                   .HasIndex(e => e.Ordem)
+                   .IsUnique(true);
+            modelBuilder.Entity<RespostaModel>()
+                 .HasIndex(e => e.PerguntaId)
+                 .IsUnique(false);
+
+            modelBuilder.Entity<TemaModel>()
+                 .HasIndex(e => e.Ordem)
+                 .IsUnique(true);
+            modelBuilder.Entity<PerguntaModel>()
+                 .HasIndex(e => e.Ordem)
+                 .IsUnique(true);
+
         }
     }
 }
