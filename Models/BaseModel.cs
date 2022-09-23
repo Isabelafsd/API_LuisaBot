@@ -7,10 +7,7 @@ namespace API_LuisaBot.Models
 {
     public class BaseModel
     {
-        public BaseModel() {
-            Id = Guid.NewGuid();
-        }
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
     }

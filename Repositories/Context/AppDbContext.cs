@@ -53,6 +53,22 @@ namespace API_LuisaBot.Repositories.Context
                  .HasIndex(e => e.Ordem)
                  .IsUnique(true);
 
+            modelBuilder.Entity<RespostaModel>()
+                .Property(f => f.Id)
+                .ValueGeneratedOnAdd();
+            modelBuilder.Entity<PerguntaModel>()
+             .Property(f => f.Id)
+             .ValueGeneratedOnAdd();
+            modelBuilder.Entity<TemaModel>()
+             .Property(f => f.Id)
+             .ValueGeneratedOnAdd();
+            modelBuilder.Entity<TemaPerguntaModel>()
+             .Property(f => f.Id)
+             .ValueGeneratedOnAdd();
+            modelBuilder.Entity<SugestaoModel>()
+             .Property(f => f.Id)
+             .ValueGeneratedOnAdd();
+
         }
     }
 }

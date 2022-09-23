@@ -15,7 +15,7 @@ namespace API_LuisaBot.Repositories.ConcreteRepositories
         {
         }
 
-        public async Task<List<PerguntaModel>> GetAllPerguntasByTemaId(Guid temaId) {
+        public async Task<List<PerguntaModel>> GetAllPerguntasByTemaId(int temaId) {
 
             var temasPerguntas = await _context.TemasPerguntas
                   .Include(x=>x.Pergunta)

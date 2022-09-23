@@ -3,5 +3,6 @@
     public class PerguntaRequest
     {
         public string Descricao { get; set; }
+        public int Ordem { get; set; }
     }
 }

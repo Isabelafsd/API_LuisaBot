@@ -43,7 +43,8 @@ namespace API_LuisaBot.Controllers
                 return BadRequest();
 
             PerguntaModel pergunta = new() {
-                Descricao = request.Descricao
+                Descricao = request.Descricao,
+                Ordem = request.Ordem
             };
 
             try
@@ -58,7 +59,7 @@ namespace API_LuisaBot.Controllers
         }
 
         [HttpGet("tema-pergunta")]
-        public async Task<IActionResult> GetPerguntasByTemas(Guid temaId)
+        public async Task<IActionResult> GetPerguntasByTemas(int temaId)
         {
             var listaPerguntas = new List<PerguntasByTemasResponse>();
             var perguntas = await _context.TemasPerguntas.GetAllPerguntasByTemaId(temaId);

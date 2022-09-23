@@ -8,6 +8,6 @@ namespace API_LuisaBot.Models.Requests
         public string Referencia { get; set; }
         public int Ordem { get; set; }
         public bool IsImagem { get; set; }
-        public Guid PerguntaId { get; set; }
+        public int PerguntaId { get; set; }
     }
 }

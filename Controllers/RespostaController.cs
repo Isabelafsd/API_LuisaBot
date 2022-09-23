@@ -62,7 +62,7 @@ namespace API_LuisaBot.Controllers
         }
 
         [HttpGet("resposta-pergunta")]
-        public async Task<IActionResult> GetRespostasByPergunta(Guid perguntaId)
+        public async Task<IActionResult> GetRespostasByPergunta(int perguntaId)
         {
             var listaRespostas = new List<RespostaResponse>();
             var respostas = await _context.Respostas.GetAllRespostasByPergunta(perguntaId);

@@ -15,7 +15,7 @@ namespace API_LuisaBot.Repositories.ConcreteRepositories
         {
         }
 
-        public async Task<List<RespostaModel>> GetAllRespostasByPergunta(Guid perguntaId)
+        public async Task<List<RespostaModel>> GetAllRespostasByPergunta(int perguntaId)
         {
 
             var respostas = await _context.Respostas

@@ -7,6 +7,6 @@ namespace API_LuisaBot.Interfaces.Repositories
 {
     public interface IRespostaRepository : IBaseRepository<RespostaModel>
     {
-        Task<List<RespostaModel>> GetAllRespostasByPergunta(Guid perguntaId);
+        Task<List<RespostaModel>> GetAllRespostasByPergunta(int perguntaId);
     }
 }
