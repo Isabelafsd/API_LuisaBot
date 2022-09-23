@@ -5,4 +5,11 @@
         public string Descricao { get; set; }
         public int Ordem { get; set; }
     }
+
+    public class PerguntaUpdateRequest
+    {
+        public int Id { get; set; }
+        public string Descricao { get; set; }
+        public int Ordem { get; set; }
+    }
 }

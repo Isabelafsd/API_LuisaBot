@@ -29,10 +29,52 @@ namespace API_LuisaBot.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(Guid id)
+        public async Task<IActionResult> GetById(int id)
         {
             var resposta = await _context.Respostas.GetById(id);
             return resposta == null ? NotFound() : Ok(resposta);
+        }
+
+        [HttpPut()]
+        public async Task<IActionResult> Update(RespostaUpdateRequest resposta)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest();
+
+                RespostaModel respostaModel = new()
+                {
+                    Id = resposta.Id,
+                    Descricao = resposta.Descricao,
+                    Ordem = resposta.Ordem,
+                    IsImagem = resposta.IsImagem,
+                    PerguntaId = resposta.PerguntaId
+                };
+
+                await _context.Respostas.Update(respostaModel);
+                return Ok($"O registro de id {resposta.Id} foi atualizado");
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
+
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteById(int id)
+        {
+            try
+            {
+                var resposta = await _context.Respostas.GetById(id);
+                await _context.Respostas.Remove(resposta);
+                return Ok($"O registro de id {id} foi excluido");
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost]

@@ -28,7 +28,7 @@ namespace API_LuisaBot.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(Guid id)
+        public async Task<IActionResult> GetById(int id)
         {
             var tema = await _context.Temas.GetById(id);
             return tema == null ? NotFound() : Ok(tema);
@@ -41,6 +41,43 @@ namespace API_LuisaBot.Controllers
             return tema is null ? NotFound() : Ok(tema);
         }
 
+        [HttpPut()]
+        public async Task<IActionResult> Update(TemaUpdateRequest tema)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest();
+                TemaModel temaModel = new()
+                {
+                    Id = tema.Id,
+                    Nome = tema.Nome,
+                    Ordem = tema.Ordem
+                };
+                await _context.Temas.Update(temaModel);
+                return Ok($"O registro de id {tema.Id} foi atualizado");
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
+
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteById(int id)
+        {
+            try
+            {
+                var tema = await _context.Temas.GetById(id);
+                await _context.Temas.Remove(tema);
+                return Ok($"O registro de id {id} foi excluido");
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
 
         [HttpPost]
         public async Task<IActionResult> PostTema(TemaRequest request)
