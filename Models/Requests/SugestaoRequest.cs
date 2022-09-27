@@ -8,7 +8,6 @@ namespace API_LuisaBot.Models.Requests
     public class SugestaoRequest
     {
         public string Descricao { get; set; }
-        public string Tema { get; set; }
         public bool IsPergunta { get; set; }
     }
 
@@ -16,7 +15,6 @@ namespace API_LuisaBot.Models.Requests
     {
         public int Id { get; set; }
         public string Descricao { get; set; }
-        public string Tema { get; set; }
         public bool IsPergunta { get; set; }
     }
 }

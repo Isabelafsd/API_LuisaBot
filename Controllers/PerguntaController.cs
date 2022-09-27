@@ -107,7 +107,8 @@ namespace API_LuisaBot.Controllers
                 foreach (var pergunta in perguntas) {
                     var perguntaResponse = new PerguntasByTemasResponse {
                         pergunta = pergunta.Descricao,
-                        perguntaId = pergunta.Id
+                        perguntaId = pergunta.Id,
+                        ordem = pergunta.Ordem
                     };
                     listaPerguntas.Add(perguntaResponse);
                 }

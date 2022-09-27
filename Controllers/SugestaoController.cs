@@ -46,8 +46,7 @@ namespace API_LuisaBot.Controllers
                 {
                     Id = sugestao.Id,
                     Descricao = sugestao.Descricao,
-                    IsPergunta = sugestao.IsPergunta,
-                    Tema = sugestao.Tema
+                    IsPergunta = sugestao.IsPergunta
                 };
                 await _context.Sugestoes.Update(sugestaoModel);
                 return Ok($"O registro de id {sugestao.Id} foi atualizado");
@@ -82,8 +81,7 @@ namespace API_LuisaBot.Controllers
 
             SugestaoModel sugestao = new() {
                 Descricao = request.Descricao,
-                IsPergunta = request.IsPergunta,
-                Tema = request.Tema
+                IsPergunta = request.IsPergunta
             };
 
             try
