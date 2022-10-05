@@ -51,7 +51,7 @@ namespace API_LuisaBot.Repositories.Context
                  .IsUnique(true);
             modelBuilder.Entity<PerguntaModel>()
                  .HasIndex(e => e.Ordem)
-                 .IsUnique(true);
+                 .IsUnique(false);
 
             modelBuilder.Entity<RespostaModel>()
                 .Property(f => f.Id)
